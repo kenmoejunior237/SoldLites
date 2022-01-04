@@ -42,7 +42,7 @@ public class Utilisateur {
 	private String photoUtilisateur;
 	
 	@ManyToMany(
-			mappedBy = "utilisateurs"
+			mappedBy = "utilisateursList"
 			)
 	private List<Produit> produit = new ArrayList<>();
 

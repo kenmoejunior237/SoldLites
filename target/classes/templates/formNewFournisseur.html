@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Employee Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouveau fournisseur</h2>
+		<div>
+			<form method="post" th:action="@{/fournisseur/save}" th:object="${fournisseur}"> 
+				<div class="form-group">
+					<label for="nomFournisseurInput">Nom:</label> 
+					<input
+						type="text" th:field="*{nomFournisseur}" class="form-control" id="nomFournisseurInput"
+						aria-describedby="nomFournisseurHelp" placeholder="Saisir le nom"> <small
+						id="nomFournisseurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="telFournisseurInput">telFournisseur:</label> 
+					<input
+						type="text" th:field="*{telFournisseur}" class="form-control" id="telFournisseurInput"
+						aria-describedby="telFournisseurHelp" placeholder="Saisir la telFournisseur"> <small
+						id="telFournisseurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="adrFournisseurInput">adrFournisseur:</label> 
+					<input
+						type="text" th:field="*{adrFournisseur}" class="form-control" id="adrFournisseurInput"
+						aria-describedby="adrFournisseurHelp" placeholder="Saisir l'adrFournisseur"> <small
+						id="adrFournisseurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="villeFournisseurInput">villeFournisseur</label> 
+					<input
+						type="text" th:field="*{villeFournisseur}" class="form-control" id="villeFournisseurInput"
+						aria-describedby="villeFournisseurHelp" placeholder="Saisir la villeFournisseur"> <small
+						id="villeFournisseurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="paysFournisseurInput">paysFournisseur:</label> 
+					<input
+						type="text" th:field="*{paysFournisseur}" class="form-control" id="paysFournisseurInput"
+						aria-describedby="paysFournisseurHelp" placeholder="Saisir le paysFournisseur"> <small
+						id="paysFournisseurHelp" class="form-text text-muted"></small>
+				</div>
+				
+				
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+</section>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

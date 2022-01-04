@@ -41,19 +41,56 @@ public class Rayon {
 			fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_Rayon")
 	
+	
 
 	List<Produit> produitList = new ArrayList<>();
-	
-	 //les methodes utilitaires 
-	
-	public void addProduit(Produit produit) {
-		produitList.add(produit);
-		produit.setRayon(this);
+
+	public long getIdRayon() {
+		return idRayon;
 	}
-	public void removeProduit(Produit produit) {
-		produitList.remove(produit);
-		produit.setRayon(null);
+
+	public void setIdRayon(long idRayon) {
+		this.idRayon = idRayon;
 	}
+
+	public String getNomRayon() {
+		return nomRayon;
+	}
+
+	public void setNomRayon(String nomRayon) {
+		this.nomRayon = nomRayon;
+	}
+
+	public List<Produit> getProduitList() {
+		return produitList;
+	}
+
+	public void setProduitList(List<Produit> produitList) {
+		this.produitList = produitList;
+	}
+	
+	
+	
+	
+	 public Rayon(String nomRayon) {
+		super();
+		this.nomRayon = nomRayon;
+	}
+	 
+	 public Rayon() {
+			
+		}
+
+	//les methodes utilitaires 
+	
+		public void addProduit(Produit produit) {
+			produitList.add(produit);
+			produit.setRayon(this);
+		}
+		public void removeProduit(Produit produit) {
+			produitList.remove(produit);
+			produit.setRayon(null);
+		}
 
 	
 	

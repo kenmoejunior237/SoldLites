@@ -14,13 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="table_Produit")
 public class Produit {
@@ -45,6 +45,9 @@ public class Produit {
 	@Column(name = "couleur_Produit")
 	private String couleurProduit;
 	
+	@Column(name = "qte_Produit")
+	private String qteProduit;
+	
 	@Column(name = "mvt_Produit")
 	private String mvtProduit;
 	
@@ -64,8 +67,23 @@ public class Produit {
 	
 	@ManyToOne(
 			cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_Fournisseur")
+	@JoinColumn(name = "id_Four")
 	private Fournisseur fournisseur;
+	
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+			//fetch = FetchType.EAGER
+			)
+	@JoinColumn(name = "id_Produit")
+	List<Entree> entreeList = new ArrayList<>();
+	
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			orphanRemoval = true,
+			fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_Produit")
+	List<Sortie> sortieList = new ArrayList<>();
 	
 	@ManyToMany(
 			fetch = FetchType.LAZY,
@@ -75,16 +93,23 @@ public class Produit {
 			}
 			)
 	@JoinTable(
-			name = "Composer", 
+			name = ("table_Commande_Produit"), 
 			joinColumns = @JoinColumn(name="id_Produit"),
 			inverseJoinColumns = @JoinColumn(name="id_Command")
 			)
 	private List<Commande> commandsList = new ArrayList<>();
 	
+	@ManyToMany(
+			fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			}
+			)
 	@JoinTable(
-			name = "Livrer", 
+			name = ("Table_Utilisateur_Produit"), 
 			joinColumns = @JoinColumn(name="id_Produit"),
-			inverseJoinColumns = @JoinColumn(name="id_Utilisateur")
+			inverseJoinColumns = @JoinColumn(name = "id_util")
 			)
 	private List<Utilisateur> utilisateursList = new ArrayList<>();
 
@@ -202,9 +227,40 @@ public class Produit {
 		this.fournisseur = fournisseur;
 	}
 	
+	public String getStockProduit() {
+		return qteProduit;
+	}
+
+	public void setStockProduit(String stockProduit) {
+		this.qteProduit = stockProduit;
+	}
 	
-	//les methodes utilitaires 
+	public String getQteProduit() {
+		return qteProduit;
+	}
+
+	public void setQteProduit(String qteProduit) {
+		this.qteProduit = qteProduit;
+	}
+
+	public List<Entree> getEntreeList() {
+		return entreeList;
+	}
+
+	public void setEntreeList(List<Entree> entreeList) {
+		entreeList = entreeList;
+	}
+
+	public List<Sortie> getSortieList() {
+		return sortieList;
+	}
+
+	public void setSortieList(List<Sortie> sortieList) {
+		sortieList = sortieList;
+	}
 	
+	// les methodes utilitaires
+
 	public void addCommande(Commande commande) {
 		commandsList.add(commande);
 		commande.getProduit().add(this);
@@ -225,6 +281,29 @@ public class Produit {
 		utilisateursList.remove(utilisateur);
 		utilisateur.getProduit().remove(this);
 	}
+	
+	
+	//les methodes utilitaires 
+	
+		public void addEntree(Entree entree) {
+			entreeList.add(entree);
+			entree.setProduit(this);
+		}
+		public void removeUtilisateur(Entree entree) {
+			utilisateursList.remove(entree);
+			entree.setProduit(null);
+		}
+		
+		//les methodes utilitaires 
+		
+		public void addSortie(Sortie sortie) {
+			sortieList.add(sortie);
+			sortie.setProduit(this);
+		}
+		public void removeUtilisateur(Sortie sortie) {
+			sortieList.remove(sortie);
+			sortie.setProduit(null);
+		}
 
 
 	

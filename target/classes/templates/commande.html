@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Commande Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+	<div align="center"  class="container-fluid"> 
+	<h1>Commande List </h1>
+		<a th:href="@{/showCommandeFrom}" class="btn btn-primary btn-sm mb-3">Add Commande</a>
+		 
+		<table class="table table-bordered table-dark">
+			<thead>
+				<tr>
+					<th scope="col">code</th>
+					<th scope="col"> Le </th>
+					<th scope="col"> total</th>
+					<th scope="col"> client</th>
+					<th scope="col"> Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				 <tr th:if="${listeCommande.empty}">
+                    <td colspan="3">Aucune Commande en base de donnees</td> 
+                </tr>
+				<tr scope="row" th:each="p : ${listeCommande}"  >
+					<td ><input type="text" th:text="${p.idCommande}" th:field="*{nomClient}" class="form-control" ></td>
+					<td th:text="${p.totalCommande}"></td>
+					<td th:text="${p.dateCommande}"></td>
+					<td th:text="${p.client.nomClient}"></td>
+					<td> <a th:href="@{/commande/editCommande/{id}(id=${p.idCommande})}"  class="btn btn-primary">Edit</a></td>
+					<td> <a th:href="@{/commande/deleteCommande/{id}(id=${p.idCommande})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+	
+	</section>
+	
+</body>
+
+</html>

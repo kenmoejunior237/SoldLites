@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Employee Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+	<div align="center"  class="container-fluid"> 
+	<h1>fournisseur List </h1>
+	<a th:href="@{/showFournisseurFrom}" class="btn btn-primary btn-sm mb-3">Add fournisseur</a>	
+		<table class="table table-bordered table-dark">
+			<thead>
+				<tr>
+					<th scope="col">code</th>
+					<th scope="col"> adresse</th>
+					<th scope="col"> nom</th>
+					<th scope="col">pays</th>
+					<th scope="col"> telephone</th>
+					<th scope="col"> ville</th>
+				</tr>
+			</thead>
+			<tbody>
+				 <tr th:if="${listeFournisseur.empty}">
+                    <td colspan="3">Aucun fournisseur en base de donnees</td> 
+                </tr>
+				<tr scope="row" th:each="f : ${listeFournisseur}">
+					<td th:text="${f.idFournisseur}"></td>
+					<td th:text="${f.adrFournisseur}"></td>
+					<td th:text="${f.nomFournisseur}"></td>
+					<td th:text="${f.paysFournisseur}"></td>
+					<td th:text="${f.telFournisseur}"></td>
+					<td th:text="${f.villeFournisseur}"></td>
+					<td> <a th:href="@{/fournisseur/editFournisseur/{id}(id=${f.idFournisseur})}"  class="btn btn-primary">Edit</a></td>
+					<td> <a th:href="@{/fournisseur/deleteFournisseur/{id}(id=${f.idFournisseur})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+	
+	
+	</section>
+	
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Commande Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouvelle commande</h2>
+		<div>
+			<form method="post" th:action="@{/saveCommande}" th:object="${commande}">  
+				<div class="form-group">
+					<label for="dateCommandeInput">Date:</label> 
+					<input
+						type="Date" th:field="*{dateCommande}" class="form-control" id="dateCommandeInput"
+						aria-describedby="dateCommandeHelp" placeholder="Saisir la dateCommande"> <small
+						id="dateCommandeHelp" class="form-text text-muted"></small>
+				</div>
+				<div>
+					<label for="totalCommandeInput">Total:</label> 
+					<input
+						type="number" th:field="*{totalCommande}" class="form-control" id="totalCommandeInput"
+						aria-describedby="totalCommandeHelp" placeholder="totalCommande"> <small
+						id="totalCommandeHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="clientInput">client</label> 
+						<select th:field="*{client}" class="form-control">
+						<option scope="row" th:each="r : ${listeClient}" th:value="${r.nomClient}" th:text="${r.nomClient}"></option>
+					   </select>
+				</div>
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	<table class="table table-bordered table-dark">
+			<thead>
+				<tr>
+					<th scope="col">produit</th>
+					<th scope="col"> quantite</th>
+					<th scope="col"> remise</th>
+					<th scope="col">rabais</th>
+					<th scope="col"> ristourne</th>
+					<th scope="col"> escompte</th>
+					<th scope="col"> prix HT</th>
+					<th scope="col"> Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr scope="row" th:each="p : ${listeProduit}"  >
+					<td th:text="${p.idProduit}"></td>
+					<td >
+						<select th:field="*{idProduit}"   >
+					    <option th:each="p : ${listeProduit}" th:value="${p.idProduit}"  th:text="${p.nomProduit}"></option>
+					   </select>
+					</td>
+					<td th:text="${p.descriptionProduit}"></td>
+					<td th:text="${p.marqueProduit}"></td>
+					<td th:text="${p.mvtProduit}"></td>
+					<td th:text="${p.nomProduit}"></td>
+					<td th:text="${p.prixHTProduit}"></td>   
+					<td> <a th:href="@{/produit/editProduit/{id}(id=${p.idProduit})}"  class="btn btn-primary">Edit</a></td>
+					<td> <a th:href="@{/produit/deleteProduit/{id}(id=${p.idProduit})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	
+	
+	</div>
+</section>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

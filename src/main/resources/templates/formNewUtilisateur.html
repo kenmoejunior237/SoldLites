@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Utilisateur Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouvel Utilisateur</h2>
+		<div>
+			<form method="post" th:action="@{/saveUtilisateur}" th:object="${utilisateur}"> 
+				<div class="form-group">
+					<label for="nomUtilisateurInput">nom</label> 
+					<input
+						type="text" th:field="*{nomUtilisateur}" class="form-control" id="nomUtilisateurInput"
+						aria-describedby="nomUtilisateurHelp" placeholder="Saisir le nomUtilisateur"> <small
+						id="nomUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="prenomUtilisateurInput">Prénom</label> 
+					<input
+						type="text" th:field="*{prenomUtilisateur}" class="form-control" id="prenomUtilisateurInput"
+						aria-describedby="prenomUtilisateurHelp" placeholder="Saisir le prenomUtilisateur"> <small
+						id="prenomUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="loginUtilisateurInput">login</label> 
+					<input
+						type="text" th:field="*{loginUtilisateur}" class="form-control" id="loginUtilisateurInput"
+						placeholder="login">
+				</div>
+				<div class="form-group">
+					<label for="emailUtilisateurInput">Email</label> 
+					<input
+						type="text" th:field="*{emailUtilisateur}" class="form-control" id="emailUtilisateurInput"
+						aria-describedby="emailUtilisateurHelp" placeholder="Saisir l'adresse email"> <small
+						id="emailUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="passwordInput">Mot de passe</label> 
+					<input
+						type="password" th:field="*{pwdUtilisateur}" class="form-control" id="passwordInput"
+						placeholder="Mot de passe">
+				</div>
+				<div class="form-group">
+					<label for="dateUtilisateurInput">Date</label> 
+					<input
+						type="Date" th:field="*{dateNaisUtilisateur}" class="form-control" id="dateUtilisateurInput"
+						placeholder="date">
+				</div>
+				<div class="form-group">
+					<label for="statutUtilisateurInput">statut</label> 
+					<input
+						type="text" th:field="*{statutUtilisateur}" class="form-control" id="statutUtilisateurInput"
+						placeholder="statut">
+				</div>
+				<div class="form-group" th:field="*{statutUtilisateur}">
+					<label>tout</label> 
+						<select  class="form-control">
+					    <option scope="row">matin</option>
+					    <option scope="row" >midi</option>
+					    <option scope="row" >soir</option>
+					   </select>
+				</div>
+				<div class="form-group">
+					<label for="sexeUtilisateurInput">sexe</label> 
+					<input
+						type="text" th:field="*{sexeUtilisateur}" class="form-control" id="sexeUtilisateurInput"
+						placeholder="sexe">
+				</div>
+				<div class="form-group">
+					<label for="photoUtilisateurInput">photo</label> 
+					<input
+						type="text" th:field="*{photoUtilisateur}" class="form-control" id="photoUtilisateurInput"
+						placeholder="photo">
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+</section>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

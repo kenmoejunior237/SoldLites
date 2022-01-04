@@ -1,9 +1,13 @@
 package com.example.soldLites.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import ch.qos.logback.core.net.server.Client;
+import com.example.soldLites.model.Client;
 
+
+@Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
+
 
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Client Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système </a>
+			</div>
+			<div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+           		<li  class="nav-item active"><a class="navbar-brand" href="#" th:href="@{/home}">Home</a></li>
+                <li><a class="navbar-brand" href="#" th:href="@{/client}">Client</a></li>
+			    <li ><a class="navbar-brand" href="#" th:href="@{/fournisseur}">Fournisseur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/facture}">Facture</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/commande}">Commande</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/utilisateur}">Utilisateur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/rayon}">Rayon</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/produit}">Produit</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/action_page.php">
+		      <div class="form-group">
+		        <input type="text" class="form-control" placeholder="Search">
+		      </div>
+		      <button type="submit" class="btn btn-default">Submit</button>
+		    </form>
+            <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+        </div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouveau Client</h2>
+		<div>
+			<form method="post" th:action="@{/saveClient}" th:object="${client}"> 
+				<div class="form-group">
+					<input
+						type="hidden" th:field="*{idClient}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="nomClientInput">Nom:</label> 
+					<input
+						type="text" th:field="*{nomClient}" class="form-control" id="nomClientInput"
+						aria-describedby="nomClientHelp" placeholder="Saisir le nom"> <small
+						id="nomClientHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="emailClientInput">mail:</label> 
+					<input
+						type="email" th:field="*{emailClient}" class="form-control" id="emailClientInput"
+						aria-describedby="emailClienttHelp" placeholder="Saisir la mail"> <small
+						id="emailClienttHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="prenomClientInput">prenom:</label> 
+					<input
+						type="text" th:field="*{prenomClient}" class="form-control" id="prenomClientInput"
+						aria-describedby="descriptionProduitHelp" placeholder="Saisir la description du prenom Client"> <small
+						id="prenomClientHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="adresseClientInput">adresse</label> 
+					<input
+						type="text" th:field="*{adresseClient}" class="form-control" id="adresseClientInput"
+						aria-describedby="adresseClientHelp" placeholder="Saisir le adresseClient"> <small
+						id="adresseClientHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="telClientInput">telephone:</label> 
+					<input
+						type="text" th:field="*{telClient}" class="form-control" id="telClientInput"
+						aria-describedby="telClientHelp" placeholder="Saisir la couleur du telClient"> <small
+						id="telClientHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="sexeClientInput">sexe</label> 
+					<input
+						type="text" th:field="*{sexeClient}" class="form-control" id="sexeClientInput"
+						aria-describedby="sexeClientHelp" placeholder="Saisir le sexeClient"> <small
+						id="sexeClientHelp" class="form-text text-muted"></small>
+				</div>
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

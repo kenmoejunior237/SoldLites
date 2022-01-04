@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{home}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Employee Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<section layout:fragment = "content" class="container special">
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouveau produit</h2>
+		<div>
+			<form method="post" th:action="@{/saveProduit}" th:object="${produit}"> 
+				<div class="form-group">
+					<label for="nomPoduitInput">Nom:</label> 
+					<input
+						type="text" th:field="*{nomProduit}" class="form-control" id="nomProduitInput"
+						aria-describedby="nomProduitHelp" placeholder="Saisir le nom"> <small
+						id="nomProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="marqueProduitInput">Marque:</label> 
+					<input
+						type="text" th:field="*{marqueProduit}" class="form-control" id="marqueProduitInput"
+						aria-describedby="marqueProduitHelp" placeholder="Saisir la marque"> <small
+						id="marqueProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="descriptionProduitInput">Description:</label> 
+					<input
+						type="text" th:field="*{descriptionProduit}" class="form-control" id="descriptionProduitInput"
+						aria-describedby="descriptionProduitHelp" placeholder="Saisir la description du Produit"> <small
+						id="descriptionProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="codebarreProduitInput">code barre</label> 
+					<input
+						type="hidden" th:field="*{codebarreProduit}" class="form-control" id="codebarreProduitInput"
+						aria-describedby="codebarreProduitHelp" placeholder="Saisir le code barre"> <small
+						id="codebarreProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="couleurProduit">couleur:</label> 
+					<input
+						type="text" th:field="*{couleurProduit}" class="form-control" id="couleurProduitInput"
+						aria-describedby="couleurProduitHelp" placeholder="Saisir la couleur du Produit"> <small
+						id="couleurProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="qteProduitInput">quantite</label> 
+					<input
+						type="text" th:field="*{qteProduit}" class="form-control" id="qteProduitInput"
+						aria-describedby="qteProduitHelp" placeholder="Saisir la qteProduit"> <small
+						id="qteProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group"> 
+					<input type="radio" th:value="entree" th:field="*{fournisseur}"  name="mouvement" placeholder="select mvt" />
+			                     <label >Entree</label>
+			         <input type="radio" th:value="sortie" th:field="*{fournisseur}"  name="mouvement" placeholder="select mvt"/>
+			                     <label >sortie</label>
+				</div>
+				<div class="form-group">
+					<label for="prixHTProduitInput">prixHTProduit</label> 
+					<input
+						type="text" th:field="*{prixHTProduit}" class="form-control" id="prixHTProduitInput"
+						aria-describedby="prixHTProduitHelp" placeholder="Saisir prixHTProduit"> <small
+						id="prixHTProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div th:if="${prixHTProduit!= null}">
+				<div class="form-group" >
+					<label for="prixTTCProduitInput">prixTTCProduit</label> 
+					<input
+						type="text" th:field="*{prixTTCProduit}" class="form-control" id="prixTTCProduitInput"
+						aria-describedby="prixTTCProduitHelp" placeholder="Saisir prixTTCProduit"> <small
+						id="prixTTCProduitHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="prixTVAProduitInput">prixTVAProduit</label> 
+					<input
+						type="text" th:field="*{prixTVAProduit}" class="form-control" id="prixTVAProduitInput"
+						aria-describedby="prixTVAProduitHelp" placeholder="Saisir prixTVAProduit"> <small
+						id="prixTVAProduitHelp" class="form-text text-muted"></small>
+				</div>
+				</div>
+				<div class="form-group">
+					<label for="rayonInput">rayon</label> 
+						<select th:field="*{rayon.idRayon}" class="form-control">
+						<option  th:each="r : ${listeRayon}" th:value="${r.idRayon}" th:text="${r.nomRayon}"></option>
+					   </select>
+				</div>
+				<div class="form-group">
+					<label for="fournisseurInput">fornisseur</label> 
+						<select th:field="*{fournisseur.idFournisseur}"  class="form-control" >
+					    <option    th:each="f : ${listeFournisseur}" th:value="${f.idFournisseur}"  th:text="${f.nomFournisseur}"></option>
+					   </select>
+				</div> 
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+</section>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

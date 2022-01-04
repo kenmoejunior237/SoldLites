@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Utilisateur Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système </a>
+			</div>
+			<div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+           		<li  class="nav-item active"><a class="navbar-brand" href="#" th:href="@{/home}">Home</a></li>
+                <li><a class="navbar-brand" href="#" th:href="@{/client}">Client</a></li>
+			    <li ><a class="navbar-brand" href="#" th:href="@{/fournisseur}">Fournisseur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/facture}">Facture</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/commande}">Commande</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/utilisateur}">Utilisateur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/rayon}">Rayon</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/produit}">Produit</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/action_page.php">
+		      <div class="form-group">
+		        <input type="text" class="form-control" placeholder="Search">
+		      </div>
+		      <button type="submit" class="btn btn-default">Submit</button>
+		    </form>
+            <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+        </div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">uodate d'un nouvel Utilisateur</h2>
+		<div>
+			<form method="post" th:action="@{/saveUtilisateur}" th:object="${utilisateur}"> 
+				<div class="form-group">
+					<input
+						type="hidden" th:field="*{idUtilisateur}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="nomUtilisateurInput">nom</label> 
+					<input
+						type="text" th:field="*{nomUtilisateur}" class="form-control" id="nomUtilisateurInput"
+						aria-describedby="nomUtilisateurHelp" placeholder="Saisir le nomUtilisateur"> <small
+						id="nomUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="prenomUtilisateurInput">Prénom</label> 
+					<input
+						type="text" th:field="*{prenomUtilisateur}" class="form-control" id="prenomUtilisateurInput"
+						aria-describedby="prenomUtilisateurHelp" placeholder="Saisir le prenomUtilisateur"> <small
+						id="prenomUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="loginUtilisateurInput">login</label> 
+					<input
+						type="text" th:field="*{loginUtilisateur}" class="form-control" id="loginUtilisateurInput"
+						placeholder="login">
+				</div>
+				<div class="form-group">
+					<label for="emailUtilisateurInput">Email</label> 
+					<input
+						type="text" th:field="*{emailUtilisateur}" class="form-control" id="emailUtilisateurInput"
+						aria-describedby="emailUtilisateurHelp" placeholder="Saisir l'adresse email"> <small
+						id="emailUtilisateurHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="passwordInput">Mot de passe</label> 
+					<input
+						type="password" th:field="*{pwdUtilisateur}" class="form-control" id="passwordInput"
+						placeholder="Mot de passe">
+				</div>
+				<div class="form-group">
+					<label for="dateUtilisateurInput">Date</label> 
+					<input
+						type="Date" th:field="*{dateNaisUtilisateur}" class="form-control" id="dateUtilisateurInput"
+						placeholder="date">
+				</div>
+				<div class="form-group">
+					<label for="statutUtilisateurInput">statut</label> 
+					<input
+						type="text" th:field="*{statutUtilisateur}" class="form-control" id="statutUtilisateurInput"
+						placeholder="statut">
+				</div>
+				<div class="form-group">
+					<label for="sexeUtilisateurInput">sexe</label> 
+					<input
+						type="text" th:field="*{sexeUtilisateur}" class="form-control" id="sexeUtilisateurInput"
+						placeholder="sexe">
+				</div>
+				<div class="form-group">
+					<label for="photoUtilisateurInput">photo</label> 
+					<input
+						type="text" th:field="*{photoUtilisateur}" class="form-control" id="photoUtilisateurInput"
+						placeholder="photo">
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

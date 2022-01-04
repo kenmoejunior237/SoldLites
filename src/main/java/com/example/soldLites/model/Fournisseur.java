@@ -40,8 +40,9 @@ public class Fournisseur {
 	
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			orphanRemoval = true,
-			fetch = FetchType.EAGER)
+			orphanRemoval = true
+			//fetch = FetchType.EAGER
+			)
 	@JoinColumn(name = "id_Four")
 	List<Produit> produitList = new ArrayList<>();
 

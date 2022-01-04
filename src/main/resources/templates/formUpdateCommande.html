@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Commande Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système </a>
+			</div>
+			<div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+           		<li  class="nav-item active"><a class="navbar-brand" href="#" th:href="@{/home}">Home</a></li>
+                <li><a class="navbar-brand" href="#" th:href="@{/client}">Client</a></li>
+			    <li ><a class="navbar-brand" href="#" th:href="@{/fournisseur}">Fournisseur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/facture}">Facture</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/commande}">Commande</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/utilisateur}">Utilisateur</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/rayon}">Rayon</a></li>
+			    <li><a class="navbar-brand" href="#" th:href="@{/produit}">Produit</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/action_page.php">
+		      <div class="form-group">
+		        <input type="text" class="form-control" placeholder="Search">
+		      </div>
+		      <button type="submit" class="btn btn-default">Submit</button>
+		    </form>
+            <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+        </div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">update d'un nouvelle commande</h2>
+		<div>
+			<form method="post" th:action="@{/saveCommande}" th:object="${commande}"> 
+				<div class="form-group">
+					<input
+						type="hidden" th:field="*{idCommande}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="dateCommandeInput">Date:</label> 
+					<input
+						type="Date" th:field="*{dateCommande}" class="form-control" id="dateCommandeInput"
+						aria-describedby="dateCommandeHelp" placeholder="Saisir la dateCommande"> <small
+						id="dateCommandeHelp" class="form-text text-muted"></small>
+				</div>
+				<div>
+					<label for="totalCommandeInput">Total:</label> 
+					<input
+						type="number" th:field="*{totalCommande}" class="form-control" id="totalCommandeInput"
+						aria-describedby="totalCommandeHelp" placeholder="totalCommande"> <small
+						id="totalCommandeHelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+					<label for="clientInput">client</label> 
+						<select th:field="*{client}" class="form-control">
+						<option scope="row" th:each="r : ${listeClient}" th:value="${r.nomClient}" th:text="${r.nomClient}"></option>
+					   </select>
+				</div>
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

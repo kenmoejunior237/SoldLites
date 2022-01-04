@@ -22,18 +22,38 @@ public class Commande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_Commande")
+	@Column(name = "id_Commande") 
 	private long idCommande; 
 	
+	public double getTotalCommande() {
+		return totalCommande;
+	}
+
+	public void setTotalCommande(double totalCommande) {
+		this.totalCommande = totalCommande;
+	}
+
+	public List<Facture> getFactureListCommande() {
+		return factureListCommande;
+	}
+
+	public void setFactureListCommande(List<Facture> factureListCommande) {
+		this.factureListCommande = factureListCommande;
+	}
 	@Column(name = "date_Commande")
 	private String dateCommande;
 	
+	@Column(name = "total_Commande")
+	private double totalCommande;
+	
+	
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			orphanRemoval = true,
-			fetch = FetchType.EAGER)
+			orphanRemoval = true
+			//fetch = FetchType.EAGER
+			)
 	@JoinColumn(name = "id_Commande")
-	List<Facture> factureList = new ArrayList<>();
+	List<Facture> factureListCommande = new ArrayList<>();
 	
 	@ManyToOne(
 			cascade = CascadeType.ALL)
@@ -41,7 +61,7 @@ public class Commande {
 	private Client client;
 	
 	@ManyToMany(
-			mappedBy = "commands"
+			mappedBy = "commandsList"
 			)
 	private List<Produit> produit = new ArrayList<>();
 
@@ -62,11 +82,11 @@ public class Commande {
 	}
 
 	public List<Facture> getFactureList() {
-		return factureList;
+		return factureListCommande;
 	}
 
 	public void setFactureList(List<Facture> factureList) {
-		this.factureList = factureList;
+		this.factureListCommande = factureList;
 	}
 
 	public Client getClient() {
@@ -88,11 +108,11 @@ public class Commande {
 	//les methodes utilitaires 
 	
 			public void addFacture(Facture facture) {
-				factureList.add(facture);
+				factureListCommande.add(facture);
 				facture.setCommand(this);
 			}
 			public void removeFacture(Facture facture) {
-				factureList.remove(facture);
+				factureListCommande.remove(facture);
 				facture.setCommand(null);
 			}
 	
