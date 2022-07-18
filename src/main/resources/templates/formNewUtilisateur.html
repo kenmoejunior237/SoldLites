@@ -38,7 +38,7 @@ body {
 
 		<h2 class="h2">Ajout d'un nouvel Utilisateur</h2>
 		<div>
-			<form method="post" th:action="@{/saveUtilisateur}" th:object="${utilisateur}"> 
+			<form method="post" th:action="@{/utilisateur/save}" th:object="${utilisateur}"> 
 				<div class="form-group">
 					<label for="nomUtilisateurInput">nom</label> 
 					<input

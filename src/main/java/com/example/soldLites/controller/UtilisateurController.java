@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.soldLites.model.Rayon;
 import com.example.soldLites.model.Utilisateur;
 import com.example.soldLites.service.UtilisateurService;
 
@@ -33,4 +35,17 @@ public class UtilisateurController {
 	 model.addAttribute("utilisateur", u ); 
 	 return "formNewUtilisateur"; // contient la page d'enregistrement du utilisateur
 	} 
+	
+	@GetMapping("/utilisateur/editUtilisateur/{idUtilisateur}")
+	public String editUtilisateur(@PathVariable(value = "idUtilisateur") int idUtilisateur, Model model) {
+		Utilisateur r = utilisateurService.updateUtilisateur(idUtilisateur);
+		 model.addAttribute("utilisateur", r);
+	 return "formUpdateUtilisateur";
+	}
+	
+	@GetMapping("/utilisateur/deleteUtilisateur/{idUtilisateur}")
+	public String deleteProduct(@PathVariable(value = "idUtilisateur") int idUtilisateur) {
+		this.utilisateurService.deleteUtilisateurById(idUtilisateur);
+		return "redirect:/utilisateur"; 
+	}
 }

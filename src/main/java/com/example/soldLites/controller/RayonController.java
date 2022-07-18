@@ -30,7 +30,7 @@ public class RayonController {
 	}
 	@PostMapping("/rayon/save")
 	public String SaveRayon(@ModelAttribute("rayon") Rayon rayon) {
-		rayonService.addRayon(rayon);
+		rayonService.addRayon(rayon); 
 	    return "redirect:/rayon"; 
 	}
 	@GetMapping("/rayon/editrayon/{idRayon}")

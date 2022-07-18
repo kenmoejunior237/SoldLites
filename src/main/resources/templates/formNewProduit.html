@@ -36,7 +36,7 @@ body {
 
 		<h2 class="h2">Ajout d'un nouveau produit</h2>
 		<div>
-			<form method="post" th:action="@{/saveProduit}" th:object="${produit}"> 
+			<form method="post" th:action="@{/produit/save}" th:object="${produit}"> 
 				<div class="form-group">
 					<label for="nomPoduitInput">Nom:</label> 
 					<input
@@ -80,9 +80,9 @@ body {
 						id="qteProduitHelp" class="form-text text-muted"></small>
 				</div>
 				<div class="form-group"> 
-					<input type="radio" th:value="entree" th:field="*{fournisseur}"  name="mouvement" placeholder="select mvt" />
+					<input type="radio" th:value="entree" th:field="*{mvtProduit}"   class="form-control" />
 			                     <label >Entree</label>
-			         <input type="radio" th:value="sortie" th:field="*{fournisseur}"  name="mouvement" placeholder="select mvt"/>
+			         <input type="radio" th:value="sortie" th:field="*{mvtProduit}"  class="form-control"  />
 			                     <label >sortie</label>
 				</div>
 				<div class="form-group">
@@ -108,7 +108,7 @@ body {
 						id="prixTVAProduitHelp" class="form-text text-muted"></small>
 				</div>
 				</div>
-				<div class="form-group">
+				<!--div class="form-group">
 					<label for="rayonInput">rayon</label> 
 						<select th:field="*{rayon.idRayon}" class="form-control">
 						<option  th:each="r : ${listeRayon}" th:value="${r.idRayon}" th:text="${r.nomRayon}"></option>
@@ -116,13 +116,33 @@ body {
 				</div>
 				<div class="form-group">
 					<label for="fournisseurInput">fornisseur</label> 
-						<select th:field="*{fournisseur.idFournisseur}"  class="form-control" >
-					    <option    th:each="f : ${listeFournisseur}" th:value="${f.idFournisseur}"  th:text="${f.nomFournisseur}"></option>
+					   <select th:field="*{fournisseur.idFournisseur}"  class="form-control" >
+					    <option    th:each="f : ${listeFournisseur}" th:value="${f.nomFournisseur}"  th:text= "${f.idFournisseur}" ></option>
 					   </select>
-				</div> 
+				</div>     -->
+				<div class="form-group">
+					<label for="fournisseurInput">fornisseur</label> 
+					   <select th:field="*{fournisseur.idFournisseur}"  class="form-control" >
+					    <option th:value="1"  th:text= "jordan" ></option>
+					   </select>
+				</div>
+				<div class="form-group">
+					<label for="rayonInput">rayon</label> 
+						<select th:field="*{rayon.idRayon}" class="form-control">
+							<option  th:value="1" th:text="patate"></option>
+							<option  th:value="2" th:text="Banane"></option>
+					    </select>
+				</div>	
+				
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>
 		</div>
+		
+		<label for="fournisseurInp">bonjour</label> 
+		
+		
+		<label for="fournisseurInp">bonsoir</label> 
+		
 
 	</div>
 </section>

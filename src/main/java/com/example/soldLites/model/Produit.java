@@ -305,7 +305,7 @@ public class Produit {
 			sortie.setProduit(null);
 		}
 
-
+		
 	
 	
 }

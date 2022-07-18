@@ -62,8 +62,8 @@ body {
 					<td th:text="${p.adresseClient}"></td>
 					<td th:text="${p.telClient}"></td>
 					<td th:text="${p.sexeClient}"></td>
-					<td> <a th:href="@{/client/editClient/{id}(id=${p.idClient})}"  class="btn btn-primary">Edit</a></td>
-					<td> <a th:href="@{/client/deleteClient/{id}(id=${p.idClient})}" class="btn btn-danger">Delete</a></td>
+					<td> <a th:href="@{/client/editclient/{id}(id=${p.idClient})}"  class="btn btn-primary">Edit</a></td>
+					<td> <a th:href="@{/client/deleteclient/{id}(id=${p.idClient})}" class="btn btn-danger">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

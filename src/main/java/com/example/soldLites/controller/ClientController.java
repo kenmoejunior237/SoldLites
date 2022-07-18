@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.soldLites.model. Client;
+import com.example.soldLites.model.Rayon;
 import com.example.soldLites.service.ClientService;
 
 @Controller
@@ -33,6 +35,19 @@ public class ClientController {
 		 Client p = new  Client();
 	 model.addAttribute("client", p ); 
 	 return "formNewClient"; // contient la page d'enregistrement du client
+	}
+	
+	@GetMapping("/client/editclient/{idClient}")
+	public String editClient(@PathVariable(value = "idClient") int idClient, Model model) {
+		Client r = clientService.updateClient(idClient);
+		 model.addAttribute("client", r);
+	 return "formUpdateClient";
+	}
+	
+	@GetMapping("/client/deleteclient/{idClient}")
+	public String deleteClient(@PathVariable(value = "idClient") int idClient) {
+		this.clientService.deleteClientById(idClient);
+		return "redirect:/client"; 
 	}
 	
 	@GetMapping("/saved")

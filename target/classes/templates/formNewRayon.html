@@ -47,8 +47,12 @@ body {
 						aria-describedby="nomRayonHelp" placeholder="Saisir le nom"> <small
 						id="nomRayonHelp" class="form-text text-muted"></small>
 				</div>
-				
-				
+				<!--div class="form-group">
+					<label for="rayonInput">rayon</label> 
+						<select scope="row" th:field="*{rayon}" class="form-control">
+						<option  th:each="r : ${listeRayon}" th:value="${r.idRayon}" th:text="${r.nomRayon}"></option>
+					   </select>
+				</div>  -->			
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>
 		</div>

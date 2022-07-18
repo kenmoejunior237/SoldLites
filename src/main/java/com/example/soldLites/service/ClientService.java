@@ -33,7 +33,7 @@ public class ClientService {
 		clientRepository.deleteById(id);
 	}
 	
-	public Client updatecommande(long id) {
+	public Client updateClient(long id) {
 		Optional<Client> optional = clientRepository.findById(id);
 		Client client = null;
 		if(optional.isPresent()) {
